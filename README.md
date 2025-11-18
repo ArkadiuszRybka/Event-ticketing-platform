@@ -25,49 +25,33 @@ A production-grade monolithic application for managing events, reserving seats (
 
 ### 👤 User Functionality
 
-- Register & Login (JWT)  
-- View published events  
-- Browse seat map for an event  
-- Hold seats (temporary reservation, TTL e.g. 5 min)  
-- Convert hold to order (LOCK → SOLD after payment)  
-- View “My Orders”  
+- Register/Login (JWT)  
+- View events & seat map  
+- Hold seats (TTL 5min) → Convert to order  
+- View orders  
 - Webhook-based payment confirmation  
 
 ### 🛠️ Admin Functionality
 
-- Create / Edit / Delete venues (with seating layout)  
-- Create events with state machine: DRAFT → PUBLISHED → CANCELLED  
-- Automatic seat generation for each event based on venue layout  
-- View all orders  
-- Manual refunds  
-- Event & order reporting  
-- Manage users  
-- System monitoring (Actuator)  
-- Configure rate limits  
+- Manage venues & events (DRAFT → PUBLISHED → CANCELLED)  
+- Automatic seat generation  
+- View orders, manual refunds, reporting  
+- User management & system monitoring  
+- Rate limit configuration  
 
 ### 💳 Payment Processing (Mocked Stripe-like flow)
 
-- Payment session creation (client receives payment URL)  
-- Payment confirmation via webhook (idempotent)  
+- Mocked Stripe-like flow  
+- Idempotent webhook processing  
 - Order lifecycle: HOLD → LOCKED → PAID/SOLD  
-- Failed payments automatically release seats  
-- Idempotent handling of retries & duplicated notifications
 
-  **Security:**  
-- JWT access tokens  
-- Role-based access (USER / ADMIN)  
-- Rate limiting on selected endpoints  
-- Webhook signed secret validation  
+## 🧠 Architecture
 
-**Concurrency & Consistency:**  
-- Optimistic locking for seat updates  
-- Idempotency keys for hold/order/payment processing  
-- Distributed TTL for hold expiration  
-
-**Redis usage:**  
-- Idempotency storage  
-- Caching  
-- Rate limiting buckets  
+- Security: JWT + role-based access  
+- Concurrency: Optimistic locking & idempotency keys  
+- Redis: caching, idempotency, rate limiting  
+- Schedulers: auto-release holds, optional order expiration  
+- Monitoring: Spring Actuator 
 
 ---
 
@@ -129,14 +113,14 @@ docker-compose up --build -d
 ```
 
 ## 🧩 Summary
--Production-ready ticketing backend with:
--Authentication & authorization
--Event management
--Real-world seat reservation logic
--Concurrency control & idempotency
--Payment flow
--Admin interface
--Monitoring & rate limiting
--Schedulers
--Docker deployment
+- Production-ready ticketing backend with:
+- Authentication & authorization
+- Event management
+- Real-world seat reservation logic
+- Concurrency control & idempotency
+- Payment flow
+- Admin interface
+- Monitoring & rate limiting
+- Schedulers
+- Docker deployment
 
