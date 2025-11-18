@@ -64,10 +64,10 @@ A production-grade monolithic application for managing events, reserving seats (
 | Database  | PostgreSQL |
 | Caching / Idempotency | Redis |
 | Migrations | Flyway |
-| Monitoring | Spring Actuator, Micrometer |
+| Monitoring | Spring Actuator |
 | Concurrency | Optimistic Locking |
 | Scheduler | Spring Scheduling |
-| Containerization | Docker, Docker Compose |
+| Containerization | Docker |
 | Build Tool | Maven |
 
 ---
@@ -79,13 +79,12 @@ A production-grade monolithic application for managing events, reserving seats (
 - Docker 20.10+  
 - Docker Compose 2.0+  
 - JDK 17+  
-- Redis installed locally OR running via Docker  
 
 ### 📁 Clone the project
 
 ```bash
-git clone https://github.com/your-repo/ticketing-platform.git
-cd ticketing-platform
+git clone https://github.com/ArkadiuszRybka/Event-ticketing-platform.git
+cd Event-ticketing-platform
 ```
 
 ## Create .env file
@@ -108,7 +107,8 @@ PAYMENT_WEBHOOK_SECRET=your_webhook_secret
 ## Running with Docker
 ```bash
 mvn clean package
-
+```
+```bash
 docker-compose up --build -d
 ```
 
